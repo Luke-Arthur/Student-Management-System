@@ -35,15 +35,6 @@ class Student { //opens the class
 		this.cnt = 0;
 	}
 
-	public Student(int number, String name, String dob, String degree, String[] codes) {
-		//initialises the globals 
-		this.number = number;
-		this.name = name;
-		this.dob = dob;
-		this.degree = degree;
-		this.codes = codes;
-		this.cnt = 0;
-	}
 
 
 	// ========================================Getters and Setters========================================
@@ -61,29 +52,11 @@ class Student { //opens the class
 		return codes;
 	}
 
-	//getter for the student name returning type string
-	public String getName() {
-		return name;
-	}
 
-	//getter for the student date of birth returning type string
-	public String getDob() {
-		return dob;
-	}
-
-	//getter for the student degree returning type string
-	public String getDegree() {
-		return degree;
-	}
 
 	//getter for the student codes returning type string
 	public String[] getCodes() {
 		return codes;
-	}
-
-	//getter for count returning type integer
-	public int getCount() {
-		return cnt;
 	}
 
 

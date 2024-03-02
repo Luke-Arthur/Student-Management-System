@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -62,7 +65,7 @@ public class MainManagement {
     // Add a new student for menu select 1
     public void menuItem1() {
         System.out.print("Student number: ");
-        int number = scan.nextInt();
+        int number = getIntInput("");
         scan.nextLine();
 
         if (studentExists(number)) {
@@ -71,19 +74,23 @@ public class MainManagement {
         }
 
         System.out.print("Student name: ");
-        String name = scan.nextLine();
+        String name = getStringInput("", "Invalid input. Please enter a valid name.");
 
         System.out.print("Date of birth: ");
-        String dob = scan.nextLine();
+        String dob = readDate("");
+        scan.nextLine();
 
         System.out.print("Degree: ");
-        String degree = scan.nextLine();
+        String degree = getStringInput("", "Invalid input. Please enter a valid degree.");
 
         System.out.print("Enrolled subjects (separated by whitespace): ");
         // Now this nextLine call will work as expected, waiting for user input
         String enrolled = scan.nextLine();
         String[] subjectCodes = enrolled.split("\\s+"); // Split the enrolled subjects by whitespace./
-        Student student = new Student(number, name, dob, degree, subjectCodes);
+        Student student = new Student(number, name, dob, degree);
+        for (String code : subjectCodes) {
+            student.addCode(code);
+        }
         students[cntStudents] = student;
 
         if (cntStudents < MAXNUM) {
@@ -159,8 +166,8 @@ public class MainManagement {
         scan.nextLine(); // Consume newline left-over
 
         System.out.print("Assignment number: ");
-        int number = Integer.parseInt(scan.nextLine()); // Parse the integer after reading the full line
-
+        int number = getIntInput("");
+        scan.nextLine();
         // Now that we have the actual input, we can validate it
         if (assignmentExists(code, number)) {
             System.out.println("The assignment " + number + " of the subject " + code + " already exists. Cannot add an assignment.");
@@ -168,7 +175,9 @@ public class MainManagement {
         }
 
         System.out.print("Due date: ");
-        String date = scan.nextLine();
+        String date = readDate("");
+        scan.nextLine();
+
 
         System.out.print("Total worth: ");
         int mark = getIntInput("");
@@ -328,7 +337,7 @@ public class MainManagement {
         boolean flag = true;
         while (flag) {
             printMenu();
-            int choice = scan.nextInt();
+            int choice = getIntInput("");
 
             switch (choice) {
                 case 1:
@@ -366,7 +375,7 @@ public class MainManagement {
     }
 
 
-    // ====================================== user input validation ======================================
+    // ====================================== user input and data validation ======================================
 
     // Method for validating integer input
     public int getIntInput(String prompt) {
@@ -380,13 +389,14 @@ public class MainManagement {
     }
 
     // Method for validating String input with a specific pattern (e.g., date)
-    public String getStringInput(String prompt, String pattern, String errorMessage) {
+    public String getStringInput(String prompt, String errorMessage) {
         System.out.print(prompt);
-        String input = scan.next();
-            while (!input.matches(pattern)) {
+        String input = scan.nextLine();
+            while (!input.matches("^[a-zA-Z\\s]*$")
+                    || input.isEmpty()){
                 System.out.println(errorMessage);
                 System.out.print(prompt);
-                input = scan.next();
+                input = scan.nextLine();
             }
         return input;
     }
@@ -403,5 +413,21 @@ public class MainManagement {
         return total;
     }
 
+
+    public String readDate(String prompt) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        while (true) {
+            try {
+                System.out.print(prompt);
+                String dateStr = scan.next();
+                Date date = dateFormat.parse(dateStr);
+
+                return dateFormat.format(date); // Return the formatted date as a String
+            } catch (ParseException e) {
+                System.out.println("Please enter a date in the format DD/MM/YYYY.");
+            }
+        }
+    }
 
 }
