@@ -1,0 +1,57 @@
+public class Assignment {
+
+    // ======================================== member Variables========================================
+    private String code;
+    private int number;
+    private String sponsor;
+    private String dueDate;
+    private int totalWorth;
+
+    // ========================================Constructor========================================
+
+    public Assignment(String code, int number, String dueDate, int totalWorth) {
+        this.code = code;
+        this.number = number;
+        this.sponsor = null;
+        this.dueDate = dueDate;
+        this.totalWorth = totalWorth;
+    }
+
+    // ========================================Getters and Setters========================================
+
+
+    // Returns the subject code of the assignment
+    public String getCode() {
+        return code;
+    }
+
+    //Returns the number of the assignment
+    public int getNumber() {
+        return number;
+    }
+
+    //Returns the sponsor of the assignment
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    //Returns the due date of the assignment
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    //Returns the total worth of the assignment
+    public int getTotalWorth() {
+        return totalWorth;
+    }
+
+    // ========================================ToString Method========================================
+
+    //the toString method used when called to print out as a string
+    @Override
+    public String toString() {
+        return  "Subject code: "+ code + "\n" + "Assignment number: " + number + "\n" + "Due date: " + dueDate + "\n" + "Total worth: " + totalWorth;
+    }
+
+
+}
