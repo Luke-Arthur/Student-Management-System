@@ -67,7 +67,7 @@ class Student { //opens the class
 	@Override
 	public String toString() {
 
-		String str = "Student number: " + number + "\n" + "Name: " + name + "\n" + "Date of birth: " + dob + "\n" + "Degree: " + degree ;
+		String str = "Student number: " + number + "\n" + "Name: " + name + "\n" + "Date of birth: " + dob + "\n" + "Degree: " + degree + "\n" + "Subjects: ";
 
 		for (int i = 0; i < cnt; i++) {
 			str += codes[i] + " ";

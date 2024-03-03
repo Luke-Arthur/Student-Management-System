@@ -3,7 +3,6 @@ public class Assignment {
     // ======================================== member Variables========================================
     private String code;
     private int number;
-    private String sponsor;
     private String dueDate;
     private int totalWorth;
 
@@ -12,7 +11,6 @@ public class Assignment {
     public Assignment(String code, int number, String dueDate, int totalWorth) {
         this.code = code;
         this.number = number;
-        this.sponsor = null;
         this.dueDate = dueDate;
         this.totalWorth = totalWorth;
     }
@@ -30,10 +28,6 @@ public class Assignment {
         return number;
     }
 
-    //Returns the sponsor of the assignment
-    public String getSponsor() {
-        return sponsor;
-    }
 
     //Returns the due date of the assignment
     public String getDueDate() {

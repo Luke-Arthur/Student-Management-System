@@ -36,7 +36,9 @@ public class MainManagement {
 
     // ====================================== Implement other necessary methods here ======================================
 
-    // Driver - AKA main - used to run the program
+
+
+    // ====================================== Main Method =============================================================
     public static void main(String[] args) {
         //creates a new instance of SES
         MainManagement manager = new MainManagement();
@@ -46,6 +48,9 @@ public class MainManagement {
 
     } //todo: END OF MAIN
 
+
+
+    // ====================================== Menu Items =============================================================
 
     // prints the menu and asks for user input
     public void printMenu() {
@@ -103,15 +108,6 @@ public class MainManagement {
 
     }
 
-    // menut Item 1 validation
-    public boolean studentExists(int number) {
-        for (int i = 0; i < cntStudents; i++) {
-            if (students[i].getNumber() == number) {
-                return true; // Found an existing student
-            }
-        }
-        return false; // No existing student found
-    }
 
 
     // Add a new subject for menu select 2
@@ -128,32 +124,29 @@ public class MainManagement {
         }
 
         System.out.print("Subject title: ");
-        String title = scan.nextLine();
+        String title = getStringInput("", "Invalid input. Please enter a valid title.");
+
 
         System.out.print("Credits: ");
-        String credit = scan.nextLine();
+        int credit = getIntInput("");
+
+            while (!(credit >= 0 && credit <= 24)) {
+                System.out.println("Invalid input. Please enter a valid credit amount between 0 and 24 inclusive.");
+                credit = getIntInput("");
+            }
+
+        scan.nextLine();
 
         System.out.print("Offered by: ");
-        String offered = scan.nextLine();
+        String offered = getStringInput("", "Invalid input. Please enter a valid school.");
 
-        Subject subject = new Subject(code, title, Integer.parseInt(credit), offered);
+        Subject subject = new Subject(code, title, credit, offered);
         if (cntSubjects < MAXNUM) {
             subjects[cntSubjects++] = subject;
         } else {
             System.out.println("Maximum number of subjects reached.");
         }
 
-    }
-
-
-    // Check if a Subject already exists
-    public boolean SubjectExists(String code) {
-        for (int i = 0; i < cntSubjects; i++) {
-            if (subjects[i].getCode().equals(code)) {
-                return true; // Found an existing subject
-            }
-        }
-        return false; // No existing subject found
     }
 
 
@@ -174,6 +167,11 @@ public class MainManagement {
             return; // Exit the method to prevent adding a duplicate assignment
         }
 
+        while (!(number >= 1 && number <= 10)) {
+            System.out.println("Invalid input. Please enter a valid assignment number between 1 and 10 inclusive.");
+            number = getIntInput("");
+        }
+
         System.out.print("Due date: ");
         String date = readDate("");
         scan.nextLine();
@@ -184,13 +182,21 @@ public class MainManagement {
 
         String subjectCode = code.toUpperCase();
         int currentTotal = getTotalGradeForSubject(subjectCode);
-        if (mark < 0 || mark > 100 - currentTotal) {
-            System.out.println("Invalid mark. The total grade for " + subjectCode + " assignments cannot exceed 100.");
-            currentTotal = 100 - currentTotal;
-            System.out.println("the remaining total worth is " + currentTotal + ". Please enter a valid mark.");
-        } else {
-            // Proceed to add the assignment
 
+        while (mark < 0 || mark > 100 - currentTotal) {
+            if (mark < 0) {
+                System.out.println("Invalid mark. Mark cannot be negative.");
+            } else if (mark > 100 - currentTotal) {
+                System.out.println("Invalid mark. The total grade for assignment " + code + " cannot exceed 100. You have " + (100 - currentTotal) + " marks left.");
+                if(currentTotal == 100) {
+                    System.out.println("The total grade for assignment " + code + " has reached 100. No more assignments can be added.");
+                    return;
+                }
+            }
+            mark = getIntInput("Please enter a valid mark: ");
+        }
+
+            // Proceed to add the assignment
             Assignment assignment = new Assignment(code, number, date, mark);
 
             if (cntAssignments < MAXNUM) {
@@ -199,37 +205,20 @@ public class MainManagement {
                 System.out.println("Maximum number of assignments reached.");
             }
 
-        }
+
     }
 
-    // Check if an assignment already exists
-    public boolean assignmentExists(String code, int number) {
-        for (int i = 0; i < cntAssignments; i++) {
-            if (assignments[i].getCode().equals(code) && assignments[i].getNumber() == number) {
-                return true; // Found an existing assignment
-            }
-        }
-        return false; // No existing assignment found
-    }
+
 
 
     // finds a student and prints it out, for menu select 4
     public boolean menuItem4() {
         System.out.print("Input a student number: ");
-        int value = scan.nextInt();
+        int value = getIntInput("");
 
         for (int i = 0; i < cntStudents; i++) {
             if (students[i].getNumber() == value) {
                 System.out.println(students[i].toString()); // Correctly prints the student details
-                // Now print the subjects for this found student
-                String[] codes = students[i].getCodes();
-                System.out.print("Subjects: ");
-                for (String code : codes) {
-                    if (code != null) {
-                        System.out.print(code + " "); // Print each enrolled subject code
-                    }
-                }
-                System.out.println();
                 return true; // Return true after finding and printing the student and their subjects
             }
         }
@@ -287,7 +276,7 @@ public class MainManagement {
     // finds all assignments of a student, for menu select 7
     public void menuItem7() {
         System.out.print("Student number: ");
-        int value = scan.nextInt();
+        int value = getIntInput("");
         scan.nextLine(); // Consume newline left-over
 
         boolean studentFound = false;
@@ -296,13 +285,6 @@ public class MainManagement {
                 System.out.println(students[i]); // Print student details
                 studentFound = true;
                 String[] enrolledSubjects = students[i].getCodes(); // Get enrolled subjects for the student
-                System.out.print("Subjects: ");
-                for (String subjectCode : enrolledSubjects) {
-                    if (subjectCode != null) {
-                        System.out.print(subjectCode + " "); // Print each enrolled subject code
-                    }
-                }
-                System.out.println();
                 for (String subjectCode : enrolledSubjects) {
                     if (subjectCode != null) {
                         // Find the subject by code and print details
@@ -321,6 +303,9 @@ public class MainManagement {
                         }
                     }
                 }
+
+
+
                 break; // Break after processing the found student
             }
         }
@@ -330,7 +315,7 @@ public class MainManagement {
         }
     }
 
-
+// ====================================== Menu Cycle =============================================================
 
     // allows user to make a certain selection through the menu until user inputs 8
     public void menuCycle() {
@@ -377,7 +362,41 @@ public class MainManagement {
 
     // ====================================== user input and data validation ======================================
 
-    // Method for validating integer input
+
+    // menut Item 1 validation
+    public boolean studentExists(int number) {
+        for (int i = 0; i < cntStudents; i++) {
+            if (students[i].getNumber() == number) {
+                return true; // Found an existing student
+            }
+        }
+        return false; // No existing student found
+    }
+
+
+
+    // Check if a Subject already exists
+    public boolean SubjectExists(String code) {
+        for (int i = 0; i < cntSubjects; i++) {
+            if (subjects[i].getCode().equals(code)) {
+                return true; // Found an existing subject
+            }
+        }
+        return false; // No existing subject found
+    }
+
+
+    // Check if an assignment already exists
+    public boolean assignmentExists(String code, int number) {
+        for (int i = 0; i < cntAssignments; i++) {
+            if (assignments[i].getCode().equals(code) && assignments[i].getNumber() == number) {
+                return true; // Found an existing assignment
+            }
+        }
+        return false; // No existing assignment found
+    }
+
+
     public int getIntInput(String prompt) {
         System.out.print(prompt);
         while (!scan.hasNextInt()) {
