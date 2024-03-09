@@ -1,9 +1,11 @@
 /*______________________________________________________________
 My name: Luke Moorhouse
 My student number: 7603599
-My course code: CSIT121 
+My course code: CSIT213
 My email address: lm678@uowmail.edu.au
+University of Wollongong - SWS - Autumn Session - 2024
 Assignment number: 1
+Subject coordinator: Dr Wei Zong
 ______________________________________________________________*/
 
 //Class called Subject 
@@ -29,19 +31,6 @@ public class Subject {//opens class
 	public String getCode() {
 		return code;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public int getCredit() {
-		return credit;
-	}
-
-	public String getSchool() {
-		return school;
-	}
-
 
 	// ========================================ToString Method========================================
 

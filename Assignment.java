@@ -1,3 +1,13 @@
+/*______________________________________________________________
+My name: Luke Moorhouse
+My student number: 7603599
+My course code: CSIT213
+My email address: lm678@uowmail.edu.au
+University of Wollongong - SWS - Autumn Session - 2024
+Assignment number: 1
+Subject coordinator: Dr Wei Zong
+______________________________________________________________*/
+
 public class Assignment {
 
     // ======================================== member Variables========================================
