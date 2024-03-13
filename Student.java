@@ -11,7 +11,7 @@ ______________________________________________________________*/
 // ========================================Student.java========================================
 
 //Class Student that provides all the attributes of a student object
-class Student { //opens the class
+class Student { //opens class
 
 	// ======================================== member Variables========================================
 

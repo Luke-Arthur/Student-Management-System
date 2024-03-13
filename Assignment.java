@@ -8,7 +8,7 @@ Assignment number: 1
 Subject coordinator: Dr Wei Zong
 ______________________________________________________________*/
 
-public class Assignment {
+public class Assignment { //opens class
 
     // ======================================== member Variables========================================
     private String code;
@@ -57,5 +57,4 @@ public class Assignment {
         return  "Subject code: "+ code + "\n" + "Assignment number: " + number + "\n" + "Due date: " + dueDate + "\n" + "Total worth: " + totalWorth;
     }
 
-
-}
+}// close the class

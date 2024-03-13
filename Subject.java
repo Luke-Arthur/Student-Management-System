@@ -40,5 +40,4 @@ public class Subject {//opens class
 		return "Subject code: " + code + "\n" + "Title: " + title + "\n" + "Credits: " + credit + "\n" + "Offered by: " + school ;
 	}
 
-//closes class
-}
+}//close the class
