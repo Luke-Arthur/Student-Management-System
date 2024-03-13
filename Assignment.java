@@ -8,6 +8,18 @@ Assignment number: 1
 Subject coordinator: Dr Wei Zong
 ______________________________________________________________*/
 
+// ================================== ABOUT THE CODE ==================================================
+
+/*
+ * The Assignment class is used to create an object of type Assignment. The class has 4 member variables
+ * which are the subject code, the number of the assignment, the due date and the total worth of the assignment.
+ * The class has a constructor which takes in the 4 member variables and sets them to the object. The class
+ * also has getters for each of the member variables. The class also has a toString method which is used to
+ * print out the object as a string.
+ */
+
+// ======================================== Class Assignment ==========================================
+
 public class Assignment { //opens class
 
     // ======================================== member Variables========================================
