@@ -11,10 +11,10 @@ ______________________________________________________________*/
 public class Assignment { //opens class
 
     // ======================================== member Variables========================================
-    private String code;
-    private int number;
-    private String dueDate;
-    private int totalWorth;
+    private final String code;
+    private final int number;
+    private final String dueDate;
+    private final int totalWorth;
 
     // ========================================Constructor==============================================
 

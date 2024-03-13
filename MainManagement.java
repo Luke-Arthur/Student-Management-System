@@ -129,7 +129,7 @@ public class MainManagement { // opens the class
         Student student = new Student(number, name, dob, degree);
         for (String code : subjectCodes) {
             // the codes that are stored in subjectCodes are added to the student object using the addCode method
-            student.addCode(code);
+            student.addCode(code.toUpperCase());
         }
         students[cntStudents] = student;
         // if the number of students is less than the maximum number of students, add the student
@@ -147,7 +147,7 @@ public class MainManagement { // opens the class
     public void menuItem2(Scanner scan) {
 
         System.out.print("Subject code: ");
-        String code = scan.next();
+        String code = scan.next().toUpperCase();
         code = code.toUpperCase();
         scan.nextLine();
 

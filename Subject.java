@@ -12,10 +12,10 @@ ______________________________________________________________*/
 public class Subject {//opens class
 
 	// ======================================== member Variables========================================
-	private String code;
-	private String title;
-	private int credit;
-	private String school;
+	private final String code;
+	private final String title;
+	private final int credit;
+	private final String school;
 
 	// ========================================Constructor==============================================
 	public Subject(String code, String title, int credit, String school) {

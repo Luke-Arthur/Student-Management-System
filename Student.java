@@ -15,11 +15,11 @@ class Student { //opens class
 
 	// ======================================== member Variables========================================
 
-	private int number;
-	private String name;
-	private String dob;
-	private String degree;
-	private String[] codes;
+	private final int number;
+	private final String name;
+	private final String dob;
+	private final String degree;
+	private final String[] codes;
 	private int cnt;
 
 
