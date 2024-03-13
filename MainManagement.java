@@ -72,7 +72,7 @@ public class MainManagement { // opens the class
         }
     }
 
-    // ====================================== Menu Items =============================================================
+    // ====================================== Menu Items ==============================================================
 
     // prints the menu and asks for user input.
     // This is a String block - it is a multi-line string which uses the triple quotes. It negates the need for concatenation.
@@ -375,7 +375,7 @@ public class MainManagement { // opens the class
         }
     }
 
-// ====================================== Menu Cycle =============================================================
+// ====================================== Menu Cycle ==================================================================
 
     // allows user to make a certain selection through the menu until user inputs 0
     public void menuCycle(Scanner scan) {
@@ -424,7 +424,7 @@ public class MainManagement { // opens the class
         scan.close();
     }
 
-    // ====================================== user input and data validation ======================================
+    // ====================================== user input and data validation =========================================
 
 
     // Check if a student already exists

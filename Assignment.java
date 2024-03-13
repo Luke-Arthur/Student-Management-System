@@ -16,7 +16,7 @@ public class Assignment { //opens class
     private String dueDate;
     private int totalWorth;
 
-    // ========================================Constructor========================================
+    // ========================================Constructor==============================================
 
     public Assignment(String code, int number, String dueDate, int totalWorth) {
         this.code = code;

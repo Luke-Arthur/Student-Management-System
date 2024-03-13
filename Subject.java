@@ -17,7 +17,7 @@ public class Subject {//opens class
 	private int credit;
 	private String school;
 
-	// ========================================Constructor========================================
+	// ========================================Constructor==============================================
 	public Subject(String code, String title, int credit, String school) {
 		//initialises the globals
 		this.code = code;
@@ -32,7 +32,7 @@ public class Subject {//opens class
 		return code;
 	}
 
-	// ========================================ToString Method========================================
+	// ========================================ToString Method============================================
 
 	//the toString method used when called to print out as a string 
 	@Override

@@ -23,7 +23,7 @@ class Student { //opens class
 	private int cnt;
 
 
-	// ========================================Constructor========================================
+	// ========================================Constructor==============================================
 	
 	//constructor that passes arguments
 
