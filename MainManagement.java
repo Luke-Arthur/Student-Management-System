@@ -166,7 +166,7 @@ public class MainManagement { // opens the class
 
         System.out.print("Credits: ");
         int credit = getIntInput(scan,"");
-
+            //
             while (!(credit >= 0 && credit <= 24)) {
                 System.out.println("Invalid input. Please enter a valid credit amount between 0 and 24 inclusive.");
                 credit = getIntInput(scan,"");
@@ -292,7 +292,7 @@ public class MainManagement { // opens the class
     public void menuItem6(Scanner scan) {
         System.out.print("Subject code: ");
         String value = scan.next();
-        String upper = value.toUpperCase(); // Assuming you want to handle case insensitivity
+        String upper = value.toUpperCase();
 
         // Find and display all assignments for the subject
         boolean foundAssignments = false;
@@ -545,5 +545,7 @@ public class MainManagement { // opens the class
             }
         }
     }
+
+    //
 
 } // Close the class
