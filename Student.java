@@ -65,8 +65,8 @@ class Student { //opens class
 	}
 
 
-
 	//getter for the student codes returning type string
+	// I added this getter due to assignment spec: "Other necessary methods for all the activities."
 	public String[] getCodes() {
 		return codes;
 	}
@@ -81,6 +81,8 @@ class Student { //opens class
 
 		String str = "Student number: " + number + "\n" + "Name: " + name + "\n" + "Date of birth: " + dob + "\n" + "Degree: " + degree + "\n" + "Subjects: ";
 
+		//this loop adds the subjects to the string to be printed.
+		// when you add a String to a string, it creates a new string with the old string and the new string (concatenation)
 		for (int i = 0; i < cnt; i++) {
 			str += codes[i] + " ";
 		}

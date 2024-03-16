@@ -26,18 +26,19 @@ import java.util.Scanner;
  * The main method creates a new instance of MainManagement and calls the menuCycle method to run the program.
  * The menuCycle method allows the user to make a certain selection through the menu until the user inputs 0.
  * The user input is validated and the data is stored in the arrays of students, subjects and assignments.
- */
+*/
 
 // ======================================== Class MainManagement ======================================================
 public class MainManagement { // opens the class
 
     // ======================================== member Variables ======================================================
+
     private static final int MAXNUM = 100;
-    private final Student[] students;
+    private final Student[] STUDENTS;
     private int cntStudents;
-    private final Subject[] subjects;
+    private final Subject[] SUBJECTS;
     private int cntSubjects;
-    private final Assignment[] assignments;
+    private final Assignment[] ASSIGNMENTS;
     private int cntAssignments;
 
     // ====================================== CTOR ====================================================================
@@ -46,9 +47,9 @@ public class MainManagement { // opens the class
     public MainManagement() {
 
         // initialising standard arrays with MAXNUM
-        students = new Student[MAXNUM];
-        subjects = new Subject[MAXNUM];
-        assignments = new Assignment[MAXNUM];
+        STUDENTS = new Student[MAXNUM];
+        SUBJECTS = new Subject[MAXNUM];
+        ASSIGNMENTS = new Assignment[MAXNUM];
         // initialising the count of students, subjects and assignments
         cntStudents = 0;
         cntSubjects = 0;
@@ -131,10 +132,11 @@ public class MainManagement { // opens the class
             // the codes that are stored in subjectCodes are added to the student object using the addCode method
             student.addCode(code.toUpperCase());
         }
-        students[cntStudents] = student;
-        // if the number of students is less than the maximum number of students, add the student
+        // assign the student to the array of students at the current count of students
+        STUDENTS[cntStudents] = student;
+        // if the number of students is less than the maximum number of students, add the student and increment the count of students
         if (cntStudents < MAXNUM) {
-            students[cntStudents++] = student;
+            STUDENTS[cntStudents++] = student;
         } else {
             System.out.println("Maximum number of students reached.");
         }
@@ -178,7 +180,7 @@ public class MainManagement { // opens the class
         // Create a new subject object and add it to the subjects array
         Subject subject = new Subject(code, title, credit, offered);
         if (cntSubjects < MAXNUM) {
-            subjects[cntSubjects++] = subject;
+            SUBJECTS[cntSubjects++] = subject;
         } else {
             System.out.println("Maximum number of subjects reached.");
         }
@@ -238,7 +240,7 @@ public class MainManagement { // opens the class
 
             // if the number of assignments is less than the maximum number of assignments, add the assignment
             if (cntAssignments < MAXNUM) {
-                assignments[cntAssignments++] = assignment;
+                ASSIGNMENTS[cntAssignments++] = assignment;
             } else {
                 // otherwise, print an error message
                 System.out.println("Maximum number of assignments reached.");
@@ -257,8 +259,8 @@ public class MainManagement { // opens the class
 
         // Loop through all students and find the student by number
         for (int i = 0; i < cntStudents; i++) {
-            if (students[i].getNumber() == value) {
-                System.out.println(students[i].toString());
+            if (STUDENTS[i].getNumber() == value) {
+                System.out.println(STUDENTS[i].toString());
                 // Return true after finding and printing the student and their subjects
                 return;
             }
@@ -275,8 +277,8 @@ public class MainManagement { // opens the class
         String value = scan.next();
         String upper = value.toUpperCase();
         for (int i = 0; i < cntSubjects; i++) {
-            if (subjects[i].getCode().equals(upper)) {
-                System.out.println(subjects[i]);
+            if (SUBJECTS[i].getCode().equals(upper)) {
+                System.out.println(SUBJECTS[i]);
                 return;
             }
         }
@@ -297,8 +299,8 @@ public class MainManagement { // opens the class
         // Loop through all assignments and find the assignments by subject code
         for (int i = 0; i < cntAssignments; i++) {
             // If the subject code matches the input value, print the assignment details
-            if (assignments[i] != null && assignments[i].getCode().equalsIgnoreCase(upper)) {
-                System.out.println(assignments[i]);
+            if (ASSIGNMENTS[i] != null && ASSIGNMENTS[i].getCode().equalsIgnoreCase(upper)) {
+                System.out.println(ASSIGNMENTS[i]);
                 foundAssignments = true;
             }
         }
@@ -325,12 +327,12 @@ public class MainManagement { // opens the class
         // Loop through all students and find the student by number
         for (int i = 0; i < cntStudents; i++) {
             // If the student number matches the input value, print the student details
-            if (students[i].getNumber() == value) {
-                System.out.println(students[i]);
+            if (STUDENTS[i].getNumber() == value) {
+                System.out.println(STUDENTS[i]);
                 studentFound = true;
 
                 // Get the enrolled subjects for the student
-                String[] enrolledSubjects = students[i].getCodes();
+                String[] enrolledSubjects = STUDENTS[i].getCodes();
 
                 // Loop through the enrolled subjects and print the details of each subject
                 for (String subjectCode : enrolledSubjects) {
@@ -342,7 +344,7 @@ public class MainManagement { // opens the class
                         // Loop through all assignments and check if the subject code matches the input value
                         for (int j = 0; j < cntAssignments; j++) {
                             // if the subject code matches the input value, print the assignment details
-                            if (assignments[j].getCode().equals(subjectCode)) {
+                            if (ASSIGNMENTS[j].getCode().equals(subjectCode)) {
                                 // Set the flag to true if the student has assignments
                                 hasAssignments = true;
                                 // Exit the loop if the student has assignments
@@ -355,11 +357,11 @@ public class MainManagement { // opens the class
 
                             // Loop through all assignments and print the details of each assignment
                             for (int k = 0; k < cntAssignments; k++) {
-                                if (assignments[k].getCode().equals(subjectCode)) {
+                                if (ASSIGNMENTS[k].getCode().equals(subjectCode)) {
                                     System.out.println("Subject code: " + subjectCode);
-                                    System.out.println("Assignment number: " + assignments[k].getNumber());
-                                    System.out.println("Due date: " + assignments[k].getDueDate());
-                                    System.out.println("Total worth: " + assignments[k].getTotalWorth());
+                                    System.out.println("Assignment number: " + ASSIGNMENTS[k].getNumber());
+                                    System.out.println("Due date: " + ASSIGNMENTS[k].getDueDate());
+                                    System.out.println("Total worth: " + ASSIGNMENTS[k].getTotalWorth());
                                 }
                             }
                         }
@@ -428,11 +430,11 @@ public class MainManagement { // opens the class
 
 
     // Check if a student already exists
-    public boolean studentExists(int number) {
+    protected boolean studentExists(int number) {
         // Loop through all students and check if the given student already exists
         for (int i = 0; i < cntStudents; i++) {
             // If the student number already exists, return true
-            if (students[i].getNumber() == number) {
+            if (STUDENTS[i].getNumber() == number) {
                 // Found an existing student
                 return true;
             }
@@ -444,11 +446,11 @@ public class MainManagement { // opens the class
 
 
     // Check if a Subject already exists
-    public boolean SubjectExists(String code) {
+    protected boolean SubjectExists(String code) {
         // Loop through all subjects and check if the given subject already exists
         for (int i = 0; i < cntSubjects; i++) {
             // If the subject code already exists, return true
-            if (subjects[i].getCode().equals(code)) {
+            if (SUBJECTS[i].getCode().equals(code)) {
                 // Found an existing subject
                 return true;
             }
@@ -460,10 +462,10 @@ public class MainManagement { // opens the class
 
 
     // Check if an assignment already exists
-    public boolean assignmentExists(String code, int number) {
+    protected boolean assignmentExists(String code, int number) {
         // Loop through all assignments and check if the given assignment already exists
         for (int i = 0; i < cntAssignments; i++) {
-            if (assignments[i].getCode().equals(code) && assignments[i].getNumber() == number) {
+            if (ASSIGNMENTS[i].getCode().equals(code) && ASSIGNMENTS[i].getNumber() == number) {
                 // Found an existing assignment
                 return true;
             }
@@ -474,7 +476,7 @@ public class MainManagement { // opens the class
 
 
     // Method for validating integer input from the user
-    public int getIntInput(Scanner scan,String prompt) {
+    protected int getIntInput(Scanner scan,String prompt) {
         System.out.print(prompt);
         // Loop until the user enters a valid integer
         while (!scan.hasNextInt()) {
@@ -491,7 +493,7 @@ public class MainManagement { // opens the class
     // Method for validating String input with a specific pattern (e.g., only letters and spaces, no numbers or special characters)
     // ^[a-zA-Z\\s]*$ pattern breakdown: ^ means the start of the string, [a-zA-Z\\s] means any letter or space, * means zero or more times, $ means the end of the string.
     // what references did I use to create this pattern? https://help.bizagi.com/bpm-suite/en/index.html?regular_expressions.htm
-    public String getStringInput(Scanner scan,String prompt, String errorMessage) {
+    protected String getStringInput(Scanner scan,String prompt, String errorMessage) {
         System.out.print(prompt);
         String input = scan.nextLine();
         // if the input does not match the pattern or is empty, the user is prompted to enter a valid input
@@ -507,12 +509,12 @@ public class MainManagement { // opens the class
 
 
     // Method to calculate the total grade of assignments for a subject
-    public int getTotalGradeForSubject(String subjectCode) {
+    protected int getTotalGradeForSubject(String subjectCode) {
         // Loop through all assignments and sum the total worth for the given subject code if the existing assignment is not null
         int total = 0;
         for (int i = 0; i < cntAssignments; i++) {
-            if (assignments[i] != null && assignments[i].getCode().equalsIgnoreCase(subjectCode)) {
-                total += assignments[i].getTotalWorth();
+            if (ASSIGNMENTS[i] != null && ASSIGNMENTS[i].getCode().equalsIgnoreCase(subjectCode)) {
+                total += ASSIGNMENTS[i].getTotalWorth();
             }
         }
         // Return the total grade for the subject
@@ -524,7 +526,7 @@ public class MainManagement { // opens the class
     // Method for validating date input from the user
     // This method uses the SimpleDateFormat class to parse the date input from the user
     // The date format is set to "dd/MM/yyyy" and the lenient property is set to false to ensure strict date validation
-    public String readDate(Scanner scan,String prompt) {
+    protected String readDate(Scanner scan,String prompt) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
         // Loop until the user enters a valid date
