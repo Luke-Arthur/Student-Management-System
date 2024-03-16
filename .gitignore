@@ -1,9 +1,0 @@
-#ignore compilation classes
-.class
-
-# ignore the out folder 
-out/
-
-#ignore the idea folder
-.idea/
-
