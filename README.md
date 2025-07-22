@@ -1,4 +1,4 @@
-# CSIT213 (Java) - A1 - Student Management System
+# CSIT213 (Java) - Student Management System
 
 ---
 
